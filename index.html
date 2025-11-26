@@ -4,6 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Collaboration Empire HQ</title>
+    <!-- Voice system styling & safe handler -->
+  <script>
+    async function speak(text) {
+      try {
+        const response = await fetch("/api/speak", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text })
+        });
+
+        if (!response.ok) {
+          console.error("Speech error:", await response.text());
+          return;
+        }
+
+        const audioBlob = await response.blob();
+        const url = URL.createObjectURL(audioBlob);
+        const audio = new Audio(url);
+        audio.play();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  </script>
   <style>
     :root {
       --bg: #050509;
