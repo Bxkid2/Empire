@@ -327,6 +327,40 @@
 
 .domain-play {
   font-size: 20px;
+}async function runEmpire() {
+  const inputEl = document.getElementById("empire-input");
+  const providerEl = document.getElementById("empire-provider");
+  const outputEl = document.getElementById("empire-output");
+
+  const prompt = (inputEl.value || "").trim();
+  const provider = providerEl.value;
+
+  if (!prompt) {
+    outputEl.textContent = "Type something for the Empire first.";
+    return;
+  }
+
+  outputEl.textContent = "Empire is thinking…";
+
+  try {
+    const res = await fetch("/api/empire-router", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provider, prompt }),
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      outputEl.textContent = "Error: " + data.error;
+      return;
+    }
+
+    outputEl.textContent = data.reply || "The Empire returned no reply.";
+  } catch (err) {
+    console.error(err);
+    outputEl.textContent = "Network error talking to the Empire router.";
+  }
 }
   </style>
 </head>
