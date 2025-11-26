@@ -207,8 +207,35 @@
 
     .domain-pill span {
       color: var(--text-muted);
-    }
+    }<section class="ai-console">
+  <h2 class="section-title">Empire AI Console</h2>
+  <p class="section-subtitle">
+    Ask a question and choose which AI in the Empire answers.
+  </p>
 
+  <textarea
+    id="empire-input"
+    class="console-input"
+    rows="3"
+    placeholder="Type your question here…"
+  ></textarea>
+
+  <div class="console-row">
+    <select id="empire-provider" class="console-select">
+      <option value="openai">Empire Core (OpenAI)</option>
+      <option value="together-apriel">Apriel Thinker</option>
+      <option value="together-kimi">Kimi Thinker</option>
+    </select>
+
+    <button class="console-button" onclick="runEmpire()">
+      Ask Empire
+    </button>
+  </div>
+
+  <div id="empire-output" class="console-output">
+    Your answer will appear here.
+  </div>
+</section>
     .footer {
       margin-top: 18px;
       font-size: 11px;
