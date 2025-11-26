@@ -362,8 +362,172 @@
           </div>
         </article>
       </div>
-    </section>
+    </section><!-- ===== COLLAB EMPIRE DOMAIN WALL (TALKING VERSION) ===== -->
+<section style="padding:60px 0; background:#000; color:white;">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    
+    <h2 style="font-size:34px; font-weight:700; margin-bottom:25px;">
+      Collaboration Empire — Digital Domain Portfolio
+    </h2>
 
+    <p style="color:#bbb; font-size:17px; margin-bottom:25px;">
+      Tap a domain to hear what it is, or play the full Empire intro.
+    </p>
+
+    <!-- Play intro button -->
+    <button
+      onclick="speakPortfolioIntro()"
+      style="
+        padding:10px 20px;
+        border-radius:999px;
+        border:none;
+        cursor:pointer;
+        background:#f97316;
+        color:#000;
+        font-weight:600;
+        margin-bottom:30px;
+      "
+    >
+      🔊 Play Empire Domain Tour
+    </button>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+    ">
+
+      <script>
+        // ---- Domain data ----
+        const domains = [
+          "aialiencollaboration.unstoppable",
+          "alienempire.unstoppable",
+          "alieninfluencer.unstoppable",
+          "amouranth.pw",
+          "amouranth.unstoppable",
+          "avninfluencer.unstoppable",
+          "chopped.unstoppable",
+          "collabmanagment.unstoppable",
+          "collabmusic.unstoppable",
+          "collaborationempire.mycircle",
+          "collaborationempire.onchain",
+          "collaborationuniverse.com",
+          "collaborationuniverse.podcast",
+          "collaborationuniverse.unstoppable",
+          "cooperationuniverse.unstoppable",
+          "disneyinfluencer.unstoppable",
+          "exoticempire.unstoppable",
+          "historyinfluencer.unstoppable",
+          "hollywoodfluencer.unstoppable",
+          "interactionuniverse.unstoppable",
+          "joeyalbum.unstoppable",
+          "joeycortijo.unstoppable",
+          "lrhoades.pw",
+          "lrhoades.unstoppable",
+          "miafans.bunni",
+          "miamalkova.dream",
+          "miamalkova.u",
+          "moviereview.unstoppable",
+          "navyrecruiter.pw",
+          "navyrecruiter.unstoppable",
+          "newplaypoyera.bunni",
+          "newplaypoyera.pw",
+          "oliviaglass.unstoppable",
+          "onlymiafans.unstoppable",
+          "partnershipuniverse.unstoppable",
+          "playboyinfluencer.unstoppable",
+          "politicalinfluencer.unstoppable",
+          "reggiejoey.unstoppable",
+          "reviewblog.unstoppable",
+          "scienceifluencer.unstoppable",
+          "spaceempire.mycircle",
+          "spaceempire.unstoppable",
+          "synergyuniverse.unstoppable",
+          "teamworkuniverse.unstoppable",
+          "unknownempire.unstoppable",
+          "usnavyinfluencer.unstoppable",
+          "usncrf.pw",
+          "usncrf.unstoppable",
+          "usnseal.pw",
+          "usnseal.unstoppable"
+        ];
+
+        // Short descriptions for some key domains
+        const domainDescriptions = {
+          "aialiencollaboration.unstoppable":
+            "A.I. Alien Collaboration — experimental brand and creative lab.",
+          "alienempire.unstoppable":
+            "Alien Empire — your sci-fi flagship for futuristic storytelling.",
+          "navyrecruiter.unstoppable":
+            "Navy Recruiter — digital branding for veteran-driven influence.",
+          "onlymiafans.unstoppable":
+            "Only Mia Fans — premium fan and creator ecosystem.",
+          "collaborationuniverse.com":
+            "Collaboration Universe — central hub of your entire system.",
+          "spaceempire.unstoppable":
+            "Space Empire — cosmic travel and advanced tech storytelling.",
+          "usnseal.unstoppable":
+            "USN SEAL — elite performance domain for leadership branding."
+        };
+
+        // Render domain cards
+        document.write(
+          domains.map(name => `
+            <div
+              onclick="describeDomain('${name}')"
+              style="
+                padding:20px;
+                background:#111;
+                border:1px solid #222;
+                border-radius:12px;
+                text-align:center;
+                font-size:15px;
+                transition:0.25s;
+                cursor:pointer;
+              "
+              onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'"
+            >
+              ${name}
+              <div style="margin-top:6px; font-size:12px; color:#888;">
+                Tap to hear this domain
+              </div>
+            </div>
+          `).join("")
+        );
+
+        // ---- SPEECH ----
+        function speak(text) {
+          window.speechSynthesis.cancel();
+          const msg = new SpeechSynthesisUtterance(text);
+          msg.lang = "en-US";
+          msg.rate = 1;
+          msg.pitch = 1;
+          window.speechSynthesis.speak(msg);
+        }
+
+        function describeDomain(name) {
+          const base = " is a premium digital real estate asset in your Collaboration Empire.";
+          const extra = domainDescriptions[name] || (name + base);
+          speak(extra);
+        }
+
+        function speakPortfolioIntro() {
+          const text = 
+            "Welcome to the Collaboration Empire domain wall. Every tile you see is a future company, a brand, or a universe waiting to open. Tap a domain to hear what it does.";
+          speak(text);
+        }
+      </script>
+    </div>
+
+    <p style="margin-top:45px; color:#777; font-size:15px; opacity:0.8;">
+      *Available for partnerships, leasing, and AI-powered projects.*
+    </p>
+
+  </div>
+</section>
+<!-- ===== END DOMAIN WALL ===== -->
+    
     <footer class="footer">
       <span class="footer-strong">Note:</span> This is a read-only portfolio view.  
       Each domain will later route to its own automated funnel, creator hub, or  
