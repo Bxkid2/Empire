@@ -1,38 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collaboration Empire</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #0e0e0e;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .center {
-            text-align: center;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 18px;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collaboration Empire HQ</title>
+  <style>
+    :root {
+      --bg: #02030a;
+      --card: #090d1a;
+      --accent: #f5b020;
+      --accent-soft: rgba(245, 176, 32, 0.15);
+      --text-main: #ffffff;
+      --text-muted: #9ba3b5;
+      --border-subtle: #1a2235;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #141933 0, #02030a 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px 32px;
+    }
+
+    .frame {
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, #11172d 0, #050714 55%);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      padding: 24px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 40px 32px;
+      }
+
+      .frame {
+        padding: 28px 32px 32px;
+      }
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #ffe9a8 0, #f5b020 30%, #b66b00 80%);
+      box-shadow: 0 0 0 2px rgba(245, 176, 32, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #2b1b02;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .status-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(12, 197, 114, 0.12);
+      border: 1px solid rgba(12, 197, 114, 0.45);
+      color: #6cf5b8;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #6cf5b8;
+      box-shadow: 0 0 0 3px rgba(108, 245, 184, 0.2);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 820px) {
+      .hero {
+        grid-template-columns: 1.6fr 1.1fr;
+        align-items: center;
+        gap: 32px;
+      }
+    }
+
+    .hero-main-title {
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 820px) {
+      .hero-main-title {
+        font-size: 32px;
+      }
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 480px;
+    }
+
+    .hero-subtitle strong {
+      color: #e0e5f5;
+      font-weight: 500;
+    }
+
+    .hero-tags {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(145, 151, 170, 0.55);
+      color: #d0d4e6;
+      background: rgba(8, 12, 32, 0.9);
+    }
+
+    /* Right summary card */
+    .overview-card {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at 0% 0%, #232a46 0, #090d1a 52%);
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .overview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .overview-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .overview-badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(245, 176, 32, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .overview-metric {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .overview-footnote {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .overview-footnote span {
+      color: #c0c4de;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .stat-card {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(3, 6, 20, 0.9);
+      padding: 10px 11px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .stat-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Sections */
+    .section-row {
+      display: grid;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 780px) {
+      .section-row {
+        grid-template-columns: 1.4fr 1.1fr;
+      }
+    }
+
+    .panel {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: var(--card);
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .pill-soft {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(63, 75, 110, 0.28);
+      border: 1px solid rgba(105, 120, 158, 0.55);
+      font-size: 11px;
+      color: #d1d6eb;
+    }
+
+    .panel-body p {
+      font-size: 13px;
+      color: #d4daee;
+      line-height: 1.5;
+    }
+
+    .panel-body p span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .list {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      padding-left: 16px;
+      line-height: 1.6;
+    }
+
+    .list li span {
+      color: #e0e5f8;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid #12182b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-left span {
+      color: #d5daf0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-links span {
+      color: #e1e6fb;
+    }
+
+    .footer-links .dot {
+      opacity: 0.4;
+    }
+  </style>
 </head>
 <body>
-    <div class="center">
-        <h1>Collaboration Empire</h1>
-        <p>HQ Online • All Systems Operational</p>
-    </div>
+  <div class="frame">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-badge">CE</div>
+        <div class="brand-text">
+          <div class="brand-name">Collaboration Empire</div>
+          <div class="brand-tagline">HQ Control Center &middot; v1.0</div>
+        </div>
+      </div>
+
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        HQ Online &middot; All Systems Operational
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-main-title">
+          Single-entry HQ for the entire Collaboration Empire.
+        </h1>
+        <p class="hero-subtitle">
+          This page is the
+          <strong>corporate landing and control layer</strong> for everything in
+          the Empire: digital real estate, AI services, subscriptions, and
+          partner onboarding.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag-pill">Veteran-Led</span>
+          <span class="tag-pill">AI-Powered</span>
+          <span class="tag-pill">24/7 Revenue Systems</span>
+          <span class="tag-pill">Franchise &amp; Partners</span>
+        </div>
+      </div>
+
+      <aside class="overview-card">
+        <div class="overview-header">
+          <div>
+            <div class="overview-title">Today&rsquo;s Overview</div>
+            <div class="overview-metric">Empire HQ &mdash; Online</div>
+          </div>
+          <span class="overview-badge">Phase&nbsp;1 &middot; Live</span>
+        </div>
+        <p class="overview-footnote">
+          <span>This environment is a clean corporate shell.</span>
+          Content, routing and automation will be attached as the next phases
+          come online.
+        </p>
+
+        <div class="grid">
+          <div class="stat-card">
+            <div class="stat-label">Primary Use</div>
+            <div class="stat-value">Executive &amp; Investor View</div>
+            <div class="stat-note">
+              High-level snapshot of all core lines of business.
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Status</div>
+            <div class="stat-value">Build &amp; Integration</div>
+            <div class="stat-note">
+              AI, Supabase, and automation layers being wired in.
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Security</div>
+            <div class="stat-value">Firewall &ndash; Baseline</div>
+            <div class="stat-note">
+              Advanced rules, IP control, and audits configured in Vercel.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Sections -->
+    <section class="section-row">
+      <article class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Empire Scope</div>
+          <span class="pill-soft">Multi-Channel Platform</span>
+        </div>
+        <div class="panel-body">
+          <p>
+            Collaboration Empire is a <span>central operations hub</span> built
+            to manage digital products, AI assistants, subscription programs,
+            and on-the-ground teams from a single, unified command center.
+          </p>
+          <ul class="list">
+            <li><span>Digital Real Estate:</span> domains, Unstoppable assets, and hosted properties.</li>
+            <li><span>AI Services:</span> voice, automation, client workflows, and training.</li>
+            <li><span>Franchise &amp; Partners:</span> structured offers, reporting, and support.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <div class="panel-title">This Page</div>
+          <span class="pill-soft">Corporate-Ready Layout</span>
+        </div>
+        <div class="panel-body">
+          <p>
+            This HQ screen is intentionally <span>simple and executive</span>:
+            it proves the GitHub &rarr; Vercel pipeline is working and gives a
+            professional, investor-safe first impression while deeper systems
+            are brought online.
+          </p>
+          <ul class="list">
+            <li><span>Safe to share</span> with partners and advisors.</li>
+            <li><span>Ready for expansion</span> into dashboards and live data.</li>
+            <li><span>Acts as the shell</span> for your future control center UI.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span>Collaboration Empire</span> &middot; HQ Online &mdash; All Systems
+        Operational
+      </div>
+      <div class="footer-links">
+        <span>Phase 1: Static HQ</span>
+        <span class="dot">&middot;</span>
+        <span>Phase 2: Live Metrics</span>
+        <span class="dot">&middot;</span>
+        <span>Phase 3: Full Automation</span>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
