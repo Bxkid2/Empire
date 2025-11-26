@@ -625,8 +625,85 @@
           speak(text);
         }
       </script>
-    </div>
+    </div>.ai-console {
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: 22px;
+  border: 1px solid #24243a;
+  background: #11111a;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.console-input {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #24243a;
+  background: #050509;
+  color: var(--text-main);
+  padding: 12px 14px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.console-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.console-select {
+  flex: 1;
+  min-width: 160px;
+  border-radius: 999px;
+  border: 1px solid #24243a;
+  background: #050509;
+  color: var(--text-main);
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.console-button {
+  border-radius: 999px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ff6b3d;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.console-button:hover {
+  opacity: 0.92;
+}
+
+.console-output {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #24243a;
+  background: #050509;
+  font-size: 14px;
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
     <p style="margin-top:45px; color:#777; font-size:15px; opacity:0.8;">
       *Available for partnerships, leasing, and AI-powered projects.*
     </p>
