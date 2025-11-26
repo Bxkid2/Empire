@@ -629,12 +629,66 @@
 
   <!-- keep going for all your domains... -->
 </div>
-    <footer class="footer">
-      <span class="footer-strong">Note:</span> This is a read-only portfolio view.  
-      Each domain will later route to its own automated funnel, creator hub, or  
-      AI-powered system as we wire DNS + Unstoppable + on-chain infra.
-    </footer>
-  </main>
+
+<footer class="footer">
+  <span class="footer-strong">Note:</span> This is a read-only portfolio view.
+  Each domain will later route to its own automated funnel, creator hub,
+  or AI-powered system as we wire DNS + Unstoppable + on-chain infra.
+</footer>
+
+</main>
+
+<script>
+  async function speak(text) {
+    try {
+      const response = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      });
+
+      if (!response.ok) {
+        console.error("Speech error:", await response.text());
+        return;
+      }
+
+      const audioBlob = await response.blob();
+      const url = URL.createObjectURL(audioBlob);
+      const audio = new Audio(url);
+      audio.play();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+</script>
+
+</body>
+</html>
+  async function speak(text) {
+    try {
+      const response = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      });
+
+      if (!response.ok) {
+        console.error("Speech error:", await response.text());
+        return;
+      }
+
+      const audioBlob = await response.blob();
+      const url = URL.createObjectURL(audioBlob);
+      const audio = new Audio(url);
+      audio.play();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+</script>
+
+</body>
+</html>
   <script>
 async function speak(text) {
   const response = await fetch("https://api.openai.com/v1/audio/speech", {
