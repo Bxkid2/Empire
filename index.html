@@ -2,515 +2,373 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Collaboration Empire HQ</title>
   <style>
     :root {
-      --bg: #02030a;
-      --card: #090d1a;
-      --accent: #f5b020;
-      --accent-soft: rgba(245, 176, 32, 0.15);
-      --text-main: #ffffff;
-      --text-muted: #9ba3b5;
-      --border-subtle: #1a2235;
+      --bg: #050509;
+      --card-bg: #11111a;
+      --card-border: #24243a;
+      --accent: #ff6b3d;
+      --accent-soft: rgba(255, 107, 61, 0.12);
+      --text-main: #f5f5f7;
+      --text-muted: #a1a1b5;
+      --pill-bg: #17172a;
+      --pill-border: #2a2a44;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #141933 0, #02030a 55%);
+      margin: 0;
+      padding: 32px 16px 40px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #151528 0, #050509 55%);
       color: var(--text-main);
-      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      padding: 24px 20px 32px;
-    }
-
-    .frame {
-      max-width: 980px;
-      margin: 0 auto;
-      border: 1px solid var(--border-subtle);
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, #11172d 0, #050714 55%);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
-      padding: 24px 20px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    @media (min-width: 768px) {
-      body {
-        padding: 40px 32px;
-      }
-
-      .frame {
-        padding: 28px 32px 32px;
-      }
-    }
-
-    /* Top bar */
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-badge {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0%, #ffe9a8 0, #f5b020 30%, #b66b00 80%);
-      box-shadow: 0 0 0 2px rgba(245, 176, 32, 0.3);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: #2b1b02;
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .page {
+      width: 100%;
+      max-width: 1040px;
     }
 
-    .brand-name {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
+    .hero {
+      border-radius: 24px;
+      padding: 32px 20px;
+      background: linear-gradient(135deg, #181828, #060611 55%, #151526);
+      border: 1px solid #2b2b40;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
+      text-align: left;
     }
 
-    .brand-tagline {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-    }
-
-    .status-pill {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(12, 197, 114, 0.12);
-      border: 1px solid rgba(12, 197, 114, 0.45);
-      color: #6cf5b8;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+    .hero-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      white-space: nowrap;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--pill-border);
+      background: rgba(12, 12, 24, 0.9);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
     }
 
-    .status-dot {
+    .hero-pill-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: #6cf5b8;
-      box-shadow: 0 0 0 3px rgba(108, 245, 184, 0.2);
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
     }
 
-    /* Hero */
-    .hero {
-      display: grid;
-      gap: 20px;
-    }
-
-    @media (min-width: 820px) {
-      .hero {
-        grid-template-columns: 1.6fr 1.1fr;
-        align-items: center;
-        gap: 32px;
-      }
-    }
-
-    .hero-main-title {
-      font-size: 26px;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    @media (min-width: 820px) {
-      .hero-main-title {
-        font-size: 32px;
-      }
+    h1 {
+      font-size: clamp(28px, 4vw, 36px);
+      margin: 4px 0 6px;
+      letter-spacing: 0.03em;
     }
 
     .hero-subtitle {
+      font-size: 15px;
       color: var(--text-muted);
-      font-size: 14px;
-      max-width: 480px;
+      max-width: 520px;
+      line-height: 1.4;
+      margin-bottom: 18px;
     }
 
-    .hero-subtitle strong {
-      color: #e0e5f5;
-      font-weight: 500;
-    }
-
-    .hero-tags {
-      margin-top: 16px;
+    .hero-meta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag-pill {
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(145, 151, 170, 0.55);
-      color: #d0d4e6;
-      background: rgba(8, 12, 32, 0.9);
-    }
-
-    /* Right summary card */
-    .overview-card {
-      border-radius: 16px;
-      border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at 0% 0%, #232a46 0, #090d1a 52%);
-      padding: 16px 16px 14px;
-      display: flex;
-      flex-direction: column;
       gap: 10px;
-    }
-
-    .overview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .overview-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
-    .overview-badge {
-      font-size: 11px;
-      padding: 4px 9px;
+    .hero-meta-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 15, 25, 0.9);
+      border: 1px solid #26263b;
+    }
+
+    .hero-meta-strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .portfolio {
+      margin-top: 28px;
+      border-radius: 22px;
+      border: 1px solid #23233a;
+      background: radial-gradient(circle at top left, #191932 0, #060611 55%);
+      padding: 20px 18px 22px;
+    }
+
+    .portfolio-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .portfolio-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .portfolio-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .portfolio-badge {
+      padding: 3px 10px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
-      border: 1px solid rgba(245, 176, 32, 0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .overview-metric {
-      font-size: 18px;
+      font-size: 11px;
       font-weight: 600;
-      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
-    .overview-footnote {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .overview-footnote span {
-      color: #c0c4de;
-    }
-
-    /* Grid */
-    .grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 4px;
-    }
-
-    @media (min-width: 720px) {
-      .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .stat-card {
-      border-radius: 12px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(3, 6, 20, 0.9);
-      padding: 10px 11px 11px;
+    .portfolio-grid {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 12px;
+      margin-top: 8px;
     }
 
-    .stat-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
+    .category-card {
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background: linear-gradient(135deg, rgba(12, 12, 24, 0.96), #05050c);
+      padding: 12px 12px 10px;
     }
 
-    .stat-value {
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .category-name {
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    .stat-note {
+    .category-note {
       font-size: 11px;
       color: var(--text-muted);
+      text-align: right;
     }
 
-    /* Sections */
-    .section-row {
+    .domain-list {
       display: grid;
-      gap: 16px;
-      margin-top: 4px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 6px;
     }
 
-    @media (min-width: 780px) {
-      .section-row {
-        grid-template-columns: 1.4fr 1.1fr;
-      }
-    }
-
-    .panel {
-      border-radius: 16px;
-      border: 1px solid var(--border-subtle);
-      background: var(--card);
-      padding: 16px 16px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-    }
-
-    .pill-soft {
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(63, 75, 110, 0.28);
-      border: 1px solid rgba(105, 120, 158, 0.55);
-      font-size: 11px;
-      color: #d1d6eb;
-    }
-
-    .panel-body p {
-      font-size: 13px;
-      color: #d4daee;
-      line-height: 1.5;
-    }
-
-    .panel-body p span {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .list {
+    .domain-pill {
       font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(60, 60, 96, 0.9);
+      background: rgba(9, 9, 20, 0.9);
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .domain-pill span {
       color: var(--text-muted);
-      margin-top: 6px;
-      padding-left: 16px;
-      line-height: 1.6;
     }
 
-    .list li span {
-      color: #e0e5f8;
-    }
-
-    /* Footer */
     .footer {
-      margin-top: 6px;
-      padding-top: 10px;
-      border-top: 1px solid #12182b;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .footer-left {
+      margin-top: 18px;
       font-size: 11px;
       color: var(--text-muted);
+      text-align: left;
+      padding: 4px 4px 0;
     }
 
-    .footer-left span {
-      color: #d5daf0;
+    .footer-strong {
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    @media (max-width: 640px) {
+      body {
+        padding: 20px 12px 32px;
+      }
 
-    .footer-links span {
-      color: #e1e6fb;
-    }
+      .hero {
+        padding: 24px 18px;
+      }
 
-    .footer-links .dot {
-      opacity: 0.4;
+      .portfolio {
+        padding: 16px 14px 18px;
+      }
+
+      .domain-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
     }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <!-- Top Bar -->
-    <header class="top-bar">
-      <div class="brand">
-        <div class="brand-badge">CE</div>
-        <div class="brand-text">
-          <div class="brand-name">Collaboration Empire</div>
-          <div class="brand-tagline">HQ Control Center &middot; v1.0</div>
-        </div>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        <span>HQ Online</span>
+        <span>•</span>
+        <span>All Systems Operational</span>
       </div>
-
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        HQ Online &middot; All Systems Operational
+      <h1>Collaboration Empire</h1>
+      <p class="hero-subtitle">
+        Central command for a 50+ domain portfolio spanning creators, AI,
+        military service, media, and on-chain brands.
+      </p>
+      <div class="hero-meta-row">
+        <div class="hero-meta-tag">
+          Owner: <span class="hero-meta-strong">Richard “Richie G” Glass</span>
+        </div>
+        <div class="hero-meta-tag">Status: Production · Vercel</div>
+        <div class="hero-meta-tag">Scope: Digital Real Estate &amp; Automation</div>
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div>
-        <h1 class="hero-main-title">
-          Single-entry HQ for the entire Collaboration Empire.
-        </h1>
-        <p class="hero-subtitle">
-          This page is the
-          <strong>corporate landing and control layer</strong> for everything in
-          the Empire: digital real estate, AI services, subscriptions, and
-          partner onboarding.
-        </p>
-
-        <div class="hero-tags">
-          <span class="tag-pill">Veteran-Led</span>
-          <span class="tag-pill">AI-Powered</span>
-          <span class="tag-pill">24/7 Revenue Systems</span>
-          <span class="tag-pill">Franchise &amp; Partners</span>
+    <section class="portfolio">
+      <div class="portfolio-header">
+        <div>
+          <div class="portfolio-title">Digital Empire Portfolio</div>
+          <div class="portfolio-sub">
+            High-value creator, military, and universe-themed assets staged for
+            activation.
+          </div>
         </div>
+        <div class="portfolio-badge">50 domains</div>
       </div>
 
-      <aside class="overview-card">
-        <div class="overview-header">
-          <div>
-            <div class="overview-title">Today&rsquo;s Overview</div>
-            <div class="overview-metric">Empire HQ &mdash; Online</div>
+      <div class="portfolio-grid">
+        <!-- Influencer & Creator Brands -->
+        <article class="category-card">
+          <div class="category-header">
+            <div class="category-name">Influencer & Creator Brands</div>
+            <div class="category-note">Fan ecosystems & talent IP</div>
           </div>
-          <span class="overview-badge">Phase&nbsp;1 &middot; Live</span>
-        </div>
-        <p class="overview-footnote">
-          <span>This environment is a clean corporate shell.</span>
-          Content, routing and automation will be attached as the next phases
-          come online.
-        </p>
+          <div class="domain-list">
+            <div class="domain-pill">amouranth.pw</div>
+            <div class="domain-pill">amouranth.unstoppable</div>
+            <div class="domain-pill">avninfluencer.unstoppable</div>
+            <div class="domain-pill">disneyinfluencer.unstoppable</div>
+            <div class="domain-pill">hollywoodfluencer.unstoppable</div>
+            <div class="domain-pill">playboyinfluencer.unstoppable</div>
+            <div class="domain-pill">miafans.bunni</div>
+            <div class="domain-pill">miamalkova.dream</div>
+            <div class="domain-pill">miamalkova.u</div>
+            <div class="domain-pill">onlymiafans.unstoppable</div>
+            <div class="domain-pill">oliviaglass.unstoppable</div>
+            <div class="domain-pill">usnavyinfluencer.unstoppable</div>
+          </div>
+        </article>
 
-        <div class="grid">
-          <div class="stat-card">
-            <div class="stat-label">Primary Use</div>
-            <div class="stat-value">Executive &amp; Investor View</div>
-            <div class="stat-note">
-              High-level snapshot of all core lines of business.
-            </div>
+        <!-- Empire & Universe Network -->
+        <article class="category-card">
+          <div class="category-header">
+            <div class="category-name">Empire & Universe Network</div>
+            <div class="category-note">Core brand, AI, and universe stack</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-label">Status</div>
-            <div class="stat-value">Build &amp; Integration</div>
-            <div class="stat-note">
-              AI, Supabase, and automation layers being wired in.
-            </div>
+          <div class="domain-list">
+            <div class="domain-pill">aialiencollaboration.unstoppable</div>
+            <div class="domain-pill">alienempire.unstoppable</div>
+            <div class="domain-pill">alieninfluencer.unstoppable</div>
+            <div class="domain-pill">collabmanagment.unstoppable</div>
+            <div class="domain-pill">collabmusic.unstoppable</div>
+            <div class="domain-pill">collaborationempire.mycircle</div>
+            <div class="domain-pill">collaborationempire.onchain</div>
+            <div class="domain-pill">collaborationuniverse.com</div>
+            <div class="domain-pill">collaborationuniverse.podcast</div>
+            <div class="domain-pill">collaborationuniverse.unstoppable</div>
+            <div class="domain-pill">cooperationuniverse.unstoppable</div>
+            <div class="domain-pill">exoticempire.unstoppable</div>
+            <div class="domain-pill">interactionuniverse.unstoppable</div>
+            <div class="domain-pill">partnershipuniverse.unstoppable</div>
+            <div class="domain-pill">spaceempire.mycircle</div>
+            <div class="domain-pill">spaceempire.unstoppable</div>
+            <div class="domain-pill">synergyuniverse.unstoppable</div>
+            <div class="domain-pill">teamworkuniverse.unstoppable</div>
+            <div class="domain-pill">unknownempire.unstoppable</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-label">Security</div>
-            <div class="stat-value">Firewall &ndash; Baseline</div>
-            <div class="stat-note">
-              Advanced rules, IP control, and audits configured in Vercel.
-            </div>
+        </article>
+
+        <!-- Military & Service Domains -->
+        <article class="category-card">
+          <div class="category-header">
+            <div class="category-name">Military & Service Domains</div>
+            <div class="category-note">Navy career, recruiting & CRF stack</div>
           </div>
-        </div>
-      </aside>
+          <div class="domain-list">
+            <div class="domain-pill">navyrecruiter.pw</div>
+            <div class="domain-pill">navyrecruiter.unstoppable</div>
+            <div class="domain-pill">usncrf.pw</div>
+            <div class="domain-pill">usncrf.unstoppable</div>
+            <div class="domain-pill">usnseal.pw</div>
+            <div class="domain-pill">usnseal.unstoppable</div>
+          </div>
+        </article>
+
+        <!-- Partner & Personal Brands -->
+        <article class="category-card">
+          <div class="category-header">
+            <div class="category-name">Partner & Personal Brands</div>
+            <div class="category-note">Key people & collab lanes</div>
+          </div>
+          <div class="domain-list">
+            <div class="domain-pill">joeyalbum.unstoppable</div>
+            <div class="domain-pill">joeycortijo.unstoppable</div>
+            <div class="domain-pill">lrhoades.pw</div>
+            <div class="domain-pill">lrhoades.unstoppable</div>
+            <div class="domain-pill">newplaypoyera.bunni</div>
+            <div class="domain-pill">newplaypoyera.pw</div>
+            <div class="domain-pill">reggiejoey.unstoppable</div>
+          </div>
+        </article>
+
+        <!-- Review & Media Network -->
+        <article class="category-card">
+          <div class="category-header">
+            <div class="category-name">Review & Media Network</div>
+            <div class="category-note">Content, analysis & breakdown hubs</div>
+          </div>
+          <div class="domain-list">
+            <div class="domain-pill">chopped.unstoppable</div>
+            <div class="domain-pill">historyinfluencer.unstoppable</div>
+            <div class="domain-pill">moviereview.unstoppable</div>
+            <div class="domain-pill">politicalinfluencer.unstoppable</div>
+            <div class="domain-pill">reviewblog.unstoppable</div>
+            <div class="domain-pill">scienceifluencer.unstoppable</div>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Sections -->
-    <section class="section-row">
-      <article class="panel">
-        <div class="panel-header">
-          <div class="panel-title">Empire Scope</div>
-          <span class="pill-soft">Multi-Channel Platform</span>
-        </div>
-        <div class="panel-body">
-          <p>
-            Collaboration Empire is a <span>central operations hub</span> built
-            to manage digital products, AI assistants, subscription programs,
-            and on-the-ground teams from a single, unified command center.
-          </p>
-          <ul class="list">
-            <li><span>Digital Real Estate:</span> domains, Unstoppable assets, and hosted properties.</li>
-            <li><span>AI Services:</span> voice, automation, client workflows, and training.</li>
-            <li><span>Franchise &amp; Partners:</span> structured offers, reporting, and support.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="panel">
-        <div class="panel-header">
-          <div class="panel-title">This Page</div>
-          <span class="pill-soft">Corporate-Ready Layout</span>
-        </div>
-        <div class="panel-body">
-          <p>
-            This HQ screen is intentionally <span>simple and executive</span>:
-            it proves the GitHub &rarr; Vercel pipeline is working and gives a
-            professional, investor-safe first impression while deeper systems
-            are brought online.
-          </p>
-          <ul class="list">
-            <li><span>Safe to share</span> with partners and advisors.</li>
-            <li><span>Ready for expansion</span> into dashboards and live data.</li>
-            <li><span>Acts as the shell</span> for your future control center UI.</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-      <div class="footer-left">
-        <span>Collaboration Empire</span> &middot; HQ Online &mdash; All Systems
-        Operational
-      </div>
-      <div class="footer-links">
-        <span>Phase 1: Static HQ</span>
-        <span class="dot">&middot;</span>
-        <span>Phase 2: Live Metrics</span>
-        <span class="dot">&middot;</span>
-        <span>Phase 3: Full Automation</span>
-      </div>
+      <span class="footer-strong">Note:</span> This is a read-only portfolio view.  
+      Each domain will later route to its own automated funnel, creator hub, or  
+      AI-powered system as we wire DNS + Unstoppable + on-chain infra.
     </footer>
-  </div>
+  </main>
 </body>
 </html>
