@@ -461,7 +461,10 @@
 
       <script>
         // ---- Domain data ----
-        const domains = [
+        function speakDomain(name) {
+    const text = domainDescriptions[name] || `This domain is ${name}.`;
+    speak(text);
+}
           "aialiencollaboration.unstoppable",
           "alienempire.unstoppable",
           "alieninfluencer.unstoppable",
