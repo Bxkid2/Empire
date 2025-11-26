@@ -34,20 +34,19 @@ export default async function handler(req, res) {
     });
 
     if (!ttsResponse.ok) {
-      const errText = await ttsResponse.text();
-      console.error("OpenAI error:", errText);
-      res.status(500).json({ error: "OpenAI TTS failed" });
+      const err = await ttsResponse.text();
+      console.error("OpenAI error:", err);
+      res.status(500).json({ error: "TTS request failed" });
       return;
     }
 
-    const arrayBuffer = await ttsResponse.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    const buffer = Buffer.from(await ttsResponse.arrayBuffer());
 
     res.setHeader("Content-Type", "audio/mpeg");
     res.setHeader("Cache-Control", "no-store");
     res.status(200).send(buffer);
-  } catch (err) {
-    console.error("Server error:", err);
+  } catch (e) {
+    console.error("Server error:", e);
     res.status(500).json({ error: "Server error" });
   }
 }
