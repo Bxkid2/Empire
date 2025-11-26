@@ -534,5 +534,24 @@
       AI-powered system as we wire DNS + Unstoppable + on-chain infra.
     </footer>
   </main>
+  <script>
+async function speak(text) {
+  const response = await fetch("https://api.openai.com/v1/audio/speech", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_OPENAI_KEY"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini-tts",
+      voice: "verse",
+      input: text
+    })
+  });
+
+  const audio = new Audio(URL.createObjectURL(await response.blob()));
+  audio.play();
+}
+</script>
 </body>
 </html>
